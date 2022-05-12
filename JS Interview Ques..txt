@@ -1,0 +1,314 @@
+Ques 1 : Difference between "==" and "===" operators.
+
+Ans : These are comparison operators.
+They always return boolean values like true or false.
+== it compares only the values.
+=== it compares the values and type of data as well.
+if you want to find out the data type of any value you need to use type of (operator returns objects) function.
+
+Ques 2 : What is the spread operator?
+
+Ans : Spread Operator looks like this ...
+It is used to destructure the iterables elements like objects and arrays.
+so for example if you want to create ab obj whose value should be exactly same.
+
+let obj1 = {id:1, name: "Abhay"}
+let obj2 = {country: "India", ...obj1}
+
+console.log(obj2) // {country: "India", id:1, name: "Abhay"}
+
+
+Ques 3. What are difference betwwn var, let and const?
+
+Ans : These are three different ways of creating or declaring the variables in the JS.
+Out of these three var used to be a part of ES5 or ECMA Script 2014 and 
+let and const are the part of latest release of JS version i.e. ES6.
+
+Var is a global scope variable.
+let and const are local scope variable.
+
+At the time of memoery allocation they will get their memory also at differnt loaction 
+means var will be in global and let & const will be in script.
+
+Ques.4: What is execution context?
+
+Ans: Execution context is the concept for describing the internal working of a code. 
+In JavaScript, the environment that enables the JavaScript
+code to get executed is what we call JavaScript Execution Context. 
+It is the execution context that decides which code section has access to the functions, variables,
+and objects used in the code. During the execution context, the specific code gets parsed line by line then the variables and functions are stored in the memory. An execution context is similar to a container that stores variables, and the code gets evaluated and then executed. 
+Thus, it is the execution context that provides an environment for the specific code to get executed.
+
+Types of Execution Context
+The types of execution context in JavaScript are:
+
+Global Execution Context/GEC
+Functional Execution Context/FEC
+Eval Execution Context
+Begin to discuss each one by one:
+
+Global Execution Context
+GEC / Global Execution Context is also called the base/default execution. 
+Any JavaScript code which does not reside in any function will be present in the global execution context. 
+The reason behind its name 'default execution context' where the code begins its execution when the file first loads in the web browser. 
+
+GEC performs the two following tasks:
+
+Firstly, it creates a global object where it is for Node.js and Window object for the browsers.
+Secondly, reference the Windows object to 'this' keyword.
+Create a memory heap in order to store variables and function references.
+Then it stores all the functions declarations in the memory heap area and the variables in the GEC with initial values as 'undefined'.
+With the above introduction, one should understand that the Global Execution Context is only one in every code because the JS engine is single-threaded,
+and thus, only one global environment is possible for executing the JavaScript code.
+
+Functional Execution Context
+FEC or Functional Execution Code is that type of context which is created by the JavaScript engine when any function call is found.
+Every function has its own execution context, and thus unlike GEC, the FEC can be more than one. 
+Also, FEC can access the entire code of the GEC, but it is not possible for GEC to access all the code of the FEC. 
+During the GEC code execution, a function call is initiated, and when found by the JS engine, it creates a new FEC for that specific function.
+
+Eval Function Execution Context
+Any JS code that gets executed within the eval function creates and holds its own execution context. 
+However, the eval function is not used by the JavaScript developers, but it is a part of the Execution Context.
+
+Execution Stack
+The execution stack is also known as Call Stack.
+The stack is the data structure that stores the values in the form of LIFO (last in, first out). 
+Similarly, an execution stack is a stack that carries track of all the execution contexts developed during the script life cycle. 
+A JavaScript developer must be known of the fact that JavaScript works as single-threaded where it is capable of executing a single task in the web browser at a time. 
+Thus, for other actions, functions, and events, a stack is created and is known as the Execution Stack.
+
+Ques.5 What is JS First Class Function?
+
+Ans : The first class functions are the first class citizens and are treated as the first-class object which can be stored in variables, passed as an argument in functions, returned from other functions, have their own properties. 
+It further means that these first class functions support all the operations which are allowed to other JavaScript objects. 
+
+Thus, JS first class functions support the following described operations:-
+
+Can be stored as a value in a variable
+Can be returned by another function
+Can be passed as a function's argument
+Can be stored in an array, stack, or queue
+Can have its own properties and methods.
+
+
+Ques.6 : What are closures?
+
+Ans : A closure can be defined as a JavaScript feature in which the inner function has access to the outer function variable. 
+In JavaScript, every time a closure is created with the creation of a function.
+
+The closure has three scope chains listed as follows:
+
+Access to its own scope.
+Access to the variables of the outer function.
+Access to the global variables.
+
+
+Example:
+
+function OuterFunction() {
+
+    var outerVariable = 100;
+
+    function InnerFunction() {
+        alert(outerVariable);
+    }
+
+    return InnerFunction;
+}
+var innerFunc = OuterFunction();
+
+innerFunc(); // 100
+
+In the above example, return InnerFunction; returns InnerFunction from OuterFunction when you call OuterFunction(). 
+A variable innerFunc reference the InnerFunction() only, not the OuterFunction(). 
+So now, when you call innerFunc(), it can still access outerVariable which is declared in OuterFunction(). 
+This is called Closure.
+
+Ques.7 : Explain call(), apply() and, bind() methods.
+
+Ans : We use call, bind and apply methods to set the this keyword independent of how the function is called. 
+This is especially useful for the callbacks.
+we know that functions are a special kind of objects in JavaScript. So they have access to some methods and properties.
+
+apply()
+
+The apply() method is similar to call(). 
+The difference is that the apply() method accepts an array of arguments instead of comma separated values.
+
+Apply invokes the function and allows you to pass in arguments as an array.
+
+Syntax:
+function.apply(thisArg, [argumentsArr])
+
+
+Example:
+
+var person1 = {firstName: 'Abhay', lastName: 'Kumar'};
+function test(greeting, year) {
+console.log(greeting + ' ' + this.firstName + ' ' + this.lastName + ' ' + year);
+}
+test.apply(person1, [‘Hello’, 2022]); // Hello Abhay Kumar 2022
+
+
+Bind( )
+The bind method creates a new function and sets the this keyword to the specified object.
+
+Bind returns a new function, allowing you to pass in a this array and any number of arguments.
+
+
+Syntax:
+function.bind(thisArg, optionalArguments)
+
+Example:
+var person1 = {firstName: 'Abhay', lastName: 'Kumar'};
+function test(greeting, year) {
+console.log(greeting + ' ' + this.firstName + ' ' + this.lastName + ' ' + year);
+}
+var user = test.bind(person1);
+user(“Hello”,2022)             // Hello  Abhay Kumar 2022
+
+
+Call ( )
+The call method sets the this inside the function and immediately executes that function.
+
+Call invokes the function and allows you to pass in arguments one by one.
+
+Syntax:
+function.call(thisArg, arg1, agr2, ...)
+
+var person1 = {firstName: 'Abhay', lastName: 'Kumar'};
+function test(greeting, year) {
+console.log(greeting + ' ' + this.firstName + ' ' + this.lastName + ' ' + year);
+}
+test.call(person1, 'Hello'); // Hello Abhay Kumar 2022
+
+
+Ques.8 : Explain Prototype.
+
+Ans : The prototype is an object that is associated with every functions and objects by default in JavaScript, 
+where function's prototype property is accessible and modifiable and object's prototype property (attribute) is not visible.
+Every function includes prototype object by default.
+
+Prototypes are the mechanism by which Javascript objects inherit features from one another.
+__proto__ object will be created inside the object which will refer to the Prototype of its class constructor 
+or function constructor whenever an object will be created.
+Using prototype property we can also add more elements to an object 
+which will be accessible by other objects also(the objects which will be created by same function or class constructor).
+
+
+function Student() {
+    this.name = 'John';
+    this.gender = 'M';
+}
+
+Student.prototype.age = 15;
+
+var studObj1 = new Student();
+alert(studObj1.age); // 15
+
+var studObj2 = new Student();
+alert(studObj2.age); // 15
+
+
+Ques. 9 : What are promises and why do we need them?
+
+Ans: The Promise object represents the eventual completion or failure of an asynchronous operation and its resulting value.
+It takes in two parameters resolve and reject , if we are getting success response then we will use resolve to give response, 
+if error comes then we will use reject to give error.
+It provides two functions .then and .catch. If you want to access response use .then,
+ if you want to handle error use .catch function.
+
+Example:
+
+async function try() {
+  let myPromise = new Promise(function(resolve, reject) {
+    resolve(“Hello World");
+  });
+  const result = await myPromise;
+  return result;
+}
+
+try();
+
+Ques. 10 : What is the purpose of async/await keywords?
+
+Javscript async/await
+
+We use the async keyword with a function to represent that the function is an asynchronous function.
+ The async function returns a promise.
+
+The syntax of async function is:
+
+async function name(parameter1, parameter2, ...paramaterN) {
+    // statements
+}
+
+Here, 
+name - name of the function
+parameters - parameters that are passed to the function
+
+Example: Async Function
+
+// async function example
+
+async function f() {
+    console.log('Async function.');
+    return Promise.resolve(1);
+}
+f(); 
+
+Output: Async function.
+
+The async keyword is used before the function to represent that the function is asynchronous.
+
+Since this function returns a promise, you can use the chaining method then() like this:
+
+async function f() {
+    console.log('Async function.');
+    return Promise.resolve(1);
+}
+
+f().then(function(result) {
+    console.log(result)
+});
+
+Output:
+Async function
+1
+
+
+In the above program, the f() function is resolved and the then() method gets executed.
+
+JavaScript await Keyword
+The await keyword is used inside the async function to wait for the asynchronous operation.
+
+The syntax to use await is:
+
+let result = await promise;
+The use of await pauses the async function until the promise returns a result (resolve or reject) value. 
+
+For example,
+
+// a promise
+let promise = new Promise(function (resolve, reject) {
+    setTimeout(function () {
+    resolve('Promise resolved')}, 4000); 
+});
+
+// async function
+async function asyncFunc() {
+
+    // wait until the promise resolves 
+    let result = await promise; 
+
+    console.log(result);
+    console.log('hello');
+}
+
+// calling the async function
+asyncFunc();
+
+Output:-
+Promise resolved
+hello
